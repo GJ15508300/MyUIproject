@@ -17,7 +17,7 @@ import { Linking } from 'react-native';
        Wellcome
      </Text>
      </View>
-     {/* <FlatListBasics/> */}
+     <FlatListBasics/>
       {/* <FrontPage/> */}
      
      <Navigation/>
