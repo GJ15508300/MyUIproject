@@ -7,7 +7,7 @@ import { Linking } from 'react-native';
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"pink" }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"red" }}>
       {/* <Text>Home Screen</Text> */}
       <FrontPage/>
       <Button

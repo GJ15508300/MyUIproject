@@ -12,17 +12,11 @@ import { Linking } from 'react-native';
  {
    return(
      <View style={{flex:1,backgroundColor:"green"}}> 
-     {/* <View style={{flex:.1,alignItems:"center"}}> 
+     <View style={{flex:.1,alignItems:"center"}}> 
      <Text style={{fontSize:20,flex:.3}}>
        Wellcome
-
-        <Text style={{color: 'blue'}}
-        onPress={() => Linking.openURL('http://google.com')}>
-        Google
-        </Text>
-
      </Text>
-     </View> */}
+     </View>
      {/* <FlatListBasics/> */}
       {/* <FrontPage/> */}
      
