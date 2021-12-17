@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "title": " Item No 1"
+    },
+    {
+        "id": 2,
+        "title": "Item No 2"
+    },
+    {
+        "id": 3,
+        "title": "Third Item"
+    },
+    {
+        "id": 4,
+        "title": "Fourth Item"
+    },
+    {
+        "id": 5,
+        "title": "Fifth Item"
+    },
+    {
+        "id": 6,
+        "title": "Sixth Item"
+    },
+    {
+        "id": 7,
+        "title": "Seventh Item"
+    },
+    {
+        "id": 8,
+        "title": "Eight Item"
+    },
+    {
+        "id": 9,
+        "title": "The renderItem prop is a function that takes every item object from the data prop and renders them into the list component. If you want your data to display with special styling, you can do this within the renderItem or refer to the method through the renderItem prop that creates styling for you (an example: renderItem={this.RenderStyling})."
+    },
+    {
+        "id":10,
+        "title": "There are two required props for React Native FlatList component – data and renderItem."
+    }
+  ]

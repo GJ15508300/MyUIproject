@@ -1,47 +1,25 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import FrontPage from '../screen/FrontPage';
-import { Linking } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import DashBoard from '../screen/DashBoard';
+import EditNotes from '../screen/EditNotes';
+import FlatListData from '../FlatList/FlatListData';
+import AddNumberList from '../FlatList/AddNumberList';
+import JsonFlatList from '../FlatList/JsonFlatList';
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"red" }}>
-      {/* <Text>Home Screen</Text> */}
-      <FrontPage/>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}        
-      />
-      <Text style={{color: 'blue'}}
-        onPress={() => Linking.openURL('./FlatListBasics.js')}>
-        Google
-        </Text>
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor:"yellow" }}>
-      <Text>Details Screen
-      
-      </Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} >
-          
-          </Stack.Screen>
-        <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Navigator>
+        
+        <Stack.Screen name="Home" component={DashBoard} />
+        <Stack.Screen name="SecondScreen" component={EditNotes} />
+        <Stack.Screen name="FlatListData" component={FlatListData}/>
+        <Stack.Screen name="AddNumberList" component={AddNumberList}/> 
+        <Stack.Screen name="JsonFlatList" component={JsonFlatList}/> 
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

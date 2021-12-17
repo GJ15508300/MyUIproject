@@ -33,6 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSMainModuleName() {
           return "index";
         }
+
+        
       };
 
   @Override
@@ -40,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     return mReactNativeHost;
   }
 
+  
   @Override
   public void onCreate() {
     super.onCreate();
