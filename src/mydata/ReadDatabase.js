@@ -1,6 +1,4 @@
 import database from '@react-native-firebase/database';
-import * as React from 'react';
-import {useState} from 'react';
 let mydata = [];
 
 export const ReadDatabase = function (data, fromindex1, toindex2) {
