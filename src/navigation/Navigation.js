@@ -6,6 +6,7 @@ import EditNotes from '../screen/EditNotes';
 import FlatListData from '../FlatList/FlatListData';
 import AddNumberList from '../FlatList/AddNumberList';
 import JsonFlatList from '../FlatList/JsonFlatList';
+import Mydatabase from '../mydata/Mydatabase';
 
 const Stack = createStackNavigator();
 
@@ -16,9 +17,7 @@ function Navigation() {
         
         <Stack.Screen name="Home" component={DashBoard} />
         <Stack.Screen name="SecondScreen" component={EditNotes} />
-        <Stack.Screen name="FlatListData" component={FlatListData}/>
-        <Stack.Screen name="AddNumberList" component={AddNumberList}/> 
-        <Stack.Screen name="JsonFlatList" component={JsonFlatList}/> 
+        <Stack.Screen name="Mydatabase" component={Mydatabase} />
         
       </Stack.Navigator>
     </NavigationContainer>

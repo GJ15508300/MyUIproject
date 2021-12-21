@@ -1,42 +1,42 @@
 [
     {
       "id": 1,
-      "title": " Item No 1"
+      "title": "Should "
     },
     {
         "id": 2,
-        "title": "Item No 2"
+        "title": "Why did airbnb stop using React Native?        Why did Airbnb drop React Native? ... The main reason was the cumbersome process of maintaining the language, as Airbnb created their own fork of React Native (they interfered directly with the framework's code). As a result they could not move as fast as they planned with their development process."
     },
     {
         "id": 3,
-        "title": "Third Item"
+        "title": "What is difference between React JS and React Native?        React-Native is a framework, where ReactJS is a javascript library you can use for your website. React-native provides default core components (images, text), where React provides a bunch of components and make them work together. React Native is for mobile applications while React is for websites(front-end)."
     },
     {
         "id": 4,
-        "title": "Fourth Item"
+        "title": "Why React Native is used?        React Native (also known as RN) is a popular JavaScript-based mobile app framework that allows you to build natively-rendered mobile apps for iOS and Android. The framework lets you create an application for various platforms by using the same codebase."
     },
     {
         "id": 5,
-        "title": "Fifth Item"
+        "title": "Is React Native really bad?        A bigger problem with React Native is the fact, that it does not fully support all native features available within iOS and Android. ... Especially when it comes to navigation components for screen transitions, React Native really lacks supporting the native look and feel of iOS and Android apps."
     },
     {
         "id": 6,
-        "title": "Sixth Item"
+        "title": "s React Native dead?        Let it be clear that this development tool is not dead; even in 2021. However, there may be other rivals, such as Flutter and Kotlin, who are attempting to take their position, however, React Native is capable of generating excellent applications, and Facebook is working hard to ensure that it does not become obsolete. "
     },
     {
         "id": 7,
-        "title": "Seventh Item"
+        "title": "What database does React Native use?        MySQL is highly compatible with the React Native local database. Moreover, you can use AsyncStorage for storing data locally on the mobile device. MySQL also has some libraries that will help you to use SQLite with React Native."
     },
     {
         "id": 8,
-        "title": "Eight Item"
+        "title": "How do I use Firebase messaging React Native?        Go to the Cloud Messaging option in the left pane. Click on Send your first message. Enter your test text, select the Android application to which you want to send the application, and click Send."
     },
     {
         "id": 9,
-        "title": "The renderItem prop is a function that takes every item object from the data prop and renders them into the list component. If you want your data to display with special styling, you can do this within the renderItem or refer to the method through the renderItem prop that creates styling for you (an example: renderItem={this.RenderStyling})."
+        "title": "Can I use Firebase with React Native?       A React Native project can use Firebase services using the NPM react-native-firebase/app module, but the native (Android & iOS) apps need to be added to the Firebase project."
     },
     {
         "id":10,
-        "title": "There are two required props for React Native FlatList component – data and renderItem."
+        "title": "What is React Native Firebase?       React Native Firebase is a collection of official React Native modules connecting you to Firebase services; each module is a light-weight JavaScript layer connecting you to the native Firebase SDKs for both iOS and Android."
     }
   ]

@@ -7,13 +7,12 @@ import {
   Text,
   StatusBar,
   Button,
-  Dimensions,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import JSONDATA from './JsonData.json'
 
 
-function AddNumberList () {
+function SingleViewFlatList () {
   ItemSeparator =()=> {
     return (
       <View
@@ -25,6 +24,8 @@ function AddNumberList () {
       />
     );
   }
+
+
   renderItem1 = ({item}) => {
     const randomNumber = () => Math.floor(Math.random() * 255) + 1;
     const getRandomColor = `rgb(${randomNumber()},${randomNumber()},${randomNumber()})`;
@@ -36,23 +37,27 @@ function AddNumberList () {
       </TouchableOpacity>
     );
   };
+  
 
 return (
   <View style={{flex: 1}}>
-  
+  <SafeAreaView style={styles.container1}>
 <FlatList 
   data={JSONDATA}
   renderItem={renderItem1}
   keyExtractor={item => item.title}          
 ItemSeparatorComponent={ItemSeparator} 
-    numColumns={2}
+  contentContainerStyle={{ 
+    flexDirection: 'row',
+    flexWrap: 'wrap-reverse',
+   }}
 />
-
+</SafeAreaView>
 </View>
 );
   }
 
-export default AddNumberList;
+export default SingleViewFlatList;
 
 
 
@@ -77,8 +82,11 @@ const styles = StyleSheet.create({
     padding: 1,
     marginVertical: 5,
     marginHorizontal: 6,
+    alignItems: 'center',
+    flex: 1,
+    width: 400,
+    height: 100,
     fontSize: 20,
-    width: Dimensions.get("window").width/2, 
   },
   item: {
     width: 40,
