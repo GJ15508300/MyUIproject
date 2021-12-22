@@ -13,7 +13,6 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AddNumberList from '../FlatList/AddNumberList';
 import SingleViewFlatList from '../FlatList/SingleViewFlatList';
-import Mydatabase from '../mydata/Mydatabase';
 
 function DashBoard() {
   const navigation = useNavigation();
@@ -51,24 +50,14 @@ function DashBoard() {
           source={require('../assets/icons/profile.png')}
         />
       </View>
-      <TouchableOpacity
-      onPress={() => {
-        console.log('Entery');
-        navigation.navigate('Mydatabase');
-      }}
-      > 
-      <Image
-              style={styles.Background1}
-              source={require('../assets/icons/Plus.png')}
-            />
-      
-      </TouchableOpacity>
-
 
       {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />}
 
+
+
+
       <View>
-        <View style={styles.Background2}>
+        <View style={styles.GroundBackground2}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/icons/tick.png')}
@@ -85,12 +74,21 @@ function DashBoard() {
             style={styles.tinyLogo}
             source={require('../assets/icons/image.png')}
           />
-          {/* <View style={styles.Background3}/>
-        <View style={styles.Background4}/> */}
         </View>
 
-        <View style={styles.nxtscreen}>
+        <View>
           <TouchableOpacity
+            onPress={() => {
+              console.log('Entery');
+              navigation.navigate('Mydatabase');
+            }}>
+            <Image
+              style={styles.endLogo}
+              source={require('../assets/icons/Plus.png')}
+            />
+          </TouchableOpacity>
+
+          {/* <TouchableOpacity
             onPress={() => {
               console.log('Entery');
               navigation.navigate('SecondScreen');
@@ -99,7 +97,7 @@ function DashBoard() {
               style={styles.endLogo}
               source={require('../assets/icons/Plus.png')}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
@@ -112,16 +110,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#ecf0f1',
-  },
-  item2: {
-    padding: 9,
-    marginVertical: 10,
-    marginHorizontal: 8,
-    alignItems: 'center',
-    flex: 1,
-    width: 180,
-    height: 100,
-    fontSize: 20,
   },
   container: {
     flex: 1,
@@ -137,15 +125,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
   },
-  Background2: {
+  GroundBackground2: {
     borderRadius: 10,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     backgroundColor: 'lightgray',
-    flexDirection: 'row',
     borderWidth: 1,
-    marginTop: 10,
-    //width:300,
+    marginTop: 20,
+    marginBottom: -100,
   },
   Background3: {
     borderRadius: 0,
@@ -157,22 +144,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 100,
     height: 40,
-
     marginTop: 25,
   },
-  Background4: {
-    borderRadius: 0,
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    backgroundColor: 'lightgray',
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderEndWidth: 1,
-    borderBottomWidth: 1,
-    borderLeftWidth: 1,
-    width: 30,
-    height: 70,
-  },
+
   tinyLogo: {
     margin: 15,
     width: 40,
@@ -184,14 +158,10 @@ const styles = StyleSheet.create({
     margin: 400,
   },
   endLogo: {
-    marginTop: -100,
+    // marginTop: -100,
     marginLeft: 300,
     width: 70,
     height: 70,
-    borderRadius: 40,
-  },
-  nxtscreen: {
-    paddingTop: 0,
-    marginTop: 0,
+    borderRadius: 30,
   },
 });

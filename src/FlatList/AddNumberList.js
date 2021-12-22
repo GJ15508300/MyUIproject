@@ -38,7 +38,7 @@ function AddNumberList () {
   };
 
 return (
-  <View style={{flex: 1}}>
+  <View style={{flex: .9}}>
   
 <FlatList 
   data={JSONDATA}
