@@ -1,7 +1,6 @@
 import database from '@react-native-firebase/database';
 import {StyleSheet, View, Button, Text} from 'react-native';
 import * as React from 'react';
-import {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import ReadDatabase from './ReadDatabase';
 import {WriteDataBase} from './WriteDataBase';
@@ -60,8 +59,7 @@ function EditNotesMydatabase() {
       <Button title="Remove" onPress={RemoveDataBase} />
       <Button title="Add new data to DB" onPress={keyvalue} />
       {/* <Button title="Write Only" onPress={Write} /> */}
-      {/* <Button title="Update Only" onPress={update} /> */}
-      
+      {/* <Button title="Update Only" onPress={update} /> */}      
       {/* <Button title="key values" onPress={keyvalue} /> */}
     </View>
   );

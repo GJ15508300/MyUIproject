@@ -13,6 +13,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AddNumberList from '../FlatList/AddNumberList';
 import SingleViewFlatList from '../FlatList/SingleViewFlatList';
+import DisplayMyDB from '../mydata/DisplayMyDB';
 
 function DashBoard() {
   const navigation = useNavigation();
@@ -52,10 +53,7 @@ function DashBoard() {
       </View>
 
       {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />}
-
-
-
-
+          {/* <DisplayMyDB/> */}
       <View>
         <View style={styles.GroundBackground2}>
           <Image
