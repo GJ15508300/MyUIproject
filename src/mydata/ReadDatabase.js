@@ -20,6 +20,6 @@ async function ReadDatabase() {
     })
     .catch(err => console.error('error: ' + err));
    // console.log("MY read DB",MYreadDB,Readvalues);
-    // return Readvalues;
+     return Readvalues;
 }
 export default ReadDatabase;

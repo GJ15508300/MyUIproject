@@ -13,14 +13,23 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AddNumberList from '../FlatList/AddNumberList';
 import SingleViewFlatList from '../FlatList/SingleViewFlatList';
-import DisplayMyDB from '../mydata/DisplayMyDB';
+import DisplayDataBase from '../mydata/DisplayDataBase';
 
 function DashBoard() {
   const navigation = useNavigation();
   const [text, setText] = useState('');
   const [mydata, setData] = useState('');
   const [clickcheck, setcheck] = useState(0);
+  
 
+  React.useEffect(() => {
+    console.log('USE Effect');
+    DisplayDataBase
+  });
+  
+
+  //  window.location.reload();
+  // window.location.href = window.location.href;
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.Background1}>
@@ -51,9 +60,10 @@ function DashBoard() {
           source={require('../assets/icons/profile.png')}
         />
       </View>
+      {/* {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />} */}
 
-      {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />}
-          {/* <DisplayMyDB/> */}
+      <DisplayDataBase />
+
       <View>
         <View style={styles.GroundBackground2}>
           <Image
@@ -85,17 +95,6 @@ function DashBoard() {
               source={require('../assets/icons/Plus.png')}
             />
           </TouchableOpacity>
-
-          {/* <TouchableOpacity
-            onPress={() => {
-              console.log('Entery');
-              navigation.navigate('SecondScreen');
-            }}>
-            <Image
-              style={styles.endLogo}
-              source={require('../assets/icons/Plus.png')}
-            />
-          </TouchableOpacity> */}
         </View>
       </View>
     </View>
