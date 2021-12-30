@@ -4,21 +4,35 @@ import ReadDatabase from './ReadDatabase';
 import JSONDATA from '../FlatList/JsonData.json';
 import {View, FlatList, StyleSheet, Text, Dimensions} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 let Readvalues;
 let myjsondata;
 
 function DisplayDataBase() {
   const [isFetching, setIsFetching] = React.useState(false);
+  const navigation = useNavigation();
 
-const fetchData = () => {
-  dispatch(getAllDataAction(userParamData));
-  setIsFetching(false);
-};
+// const fetchData = () => { 
+//   dispatch(getAllDataAction(userParamData));
+//   setIsFetching(false);
+// };
 
-const onRefresh = () => {
-  setIsFetching(true);
-  fetchData();
-};
+// const onRefresh = () => {
+//   setIsFetching(true);
+//   fetchData();
+// };
+
+
+// const [cart, setCart] = React.useState([]);
+// function addItemToCart(e) {
+//   const item = e.target.value;
+//   console.log(item);
+//   setCart([...cart, item]);
+// }
+
+
+
+
   async function ReadData() {
     Readvalues = await ReadDatabase();
     console.log('outSide of read values == Readvalues', Readvalues);
@@ -42,7 +56,11 @@ const onRefresh = () => {
     const randomNumber = () => Math.floor(Math.random() * 255) + 1;
     const getRandomColor = `rgb(${randomNumber()},${randomNumber()},${randomNumber()})`;
     return (
-      <TouchableOpacity onPress={() => alert('Hey!! Usr')}>
+      <TouchableOpacity onPress={() => { console.log("Key:",item.key, "Title:",item.title,  "Content:",item.ContentValue);
+      navigation.navigate('Mydatabase', { Key: 444,
+        Title: item.title, 
+        Content: item.ContentValue})
+    }}    >
         <View
           style={[styles.RenderitemStyle, {backgroundColor: getRandomColor}]}>
           <Text>{item.key}</Text>
@@ -52,6 +70,7 @@ const onRefresh = () => {
       </TouchableOpacity>
     );
   };
+  
 
   return (
     <View style={{flex: 0.9}}>
@@ -61,8 +80,8 @@ const onRefresh = () => {
         keyExtractor={item => item.key}
         ItemSeparatorComponent={ItemSeparator}
         numColumns={2}
-        onRefresh={onRefresh}
         refreshing={isFetching}
+      //  onRefresh={() => addItemToCart()}
       />
     </View>
   );

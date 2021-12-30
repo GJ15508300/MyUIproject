@@ -8,7 +8,7 @@ import AddNumberList from '../FlatList/AddNumberList';
 import JsonFlatList from '../FlatList/JsonFlatList';
 
 import EditNotesMydatabase from '../mydata/EditNotesMydatabase';
-import ColorPlate from '../mydata/colors/ColorPlate';
+import SetColorMyData from '../mydata/colors/SetColorMyData';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +20,7 @@ function Navigation() {
         <Stack.Screen name="Home" component={DashBoard} />
         <Stack.Screen name="SecondScreen" component={EditNotes} />
         <Stack.Screen name="Mydatabase" component={EditNotesMydatabase} />
-        {/* <Stack.Screen name="ColorPlate" component={ColorPlate} /> */}
+        <Stack.Screen name="SetColorMyData" component={SetColorMyData} />
       </Stack.Navigator>
     </NavigationContainer>
   );

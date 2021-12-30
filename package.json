@@ -20,10 +20,13 @@
     "react-native-elements": "^3.4.2",
     "react-native-firebase": "^5.6.0",
     "react-native-gesture-handler": "^2.0.0",
+    "react-native-material-menu": "^2.0.0",
     "react-native-modal-dropdown-with-flatlist": "^0.7.1",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
+    "react-native-select-dropdown": "^1.6.0",
+    "react-route-params": "^1.1.0",
     "react-router": "^6.2.1",
     "react-scripts": "^4.0.3",
     "rn-fetch-blob": "^0.12.0"
