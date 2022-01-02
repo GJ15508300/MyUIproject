@@ -1,31 +1,24 @@
+import database from '@react-native-firebase/database';
 import * as React from 'react';
-import ReadDatabase from './ReadDatabase';
-import JSONDATA from '../FlatList/JsonData.json';
 import {View, FlatList, StyleSheet, Text, Dimensions} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-let Readvalues = [];
-let myjsondata = [];
-let UserKey;
-const Dimension = Dimensions.get('window').width / 2;
-const DimensionSingleView = Dimensions.get('window').width;
+import ReadDatabase from '../mydata/ReadDatabase';
+let Readvalues;
+let myjsondata;
 
-function DisplayDataBase() {
-  console.log('Entery');
+function DisplayDBSingleView() {
   const navigation = useNavigation();
+
+  const [isFetching, setIsFetching] = React.useState(false);
 
   async function ReadData() {
     Readvalues = await ReadDatabase();
-    console.log('read values', Readvalues);
-    // UserKey = Readvalues.key;
-    // myjsondata = Readvalues.Readvalues;
-    //myjsondata = Readvalues;
+    console.log('read values == ', Readvalues);
+   // myjsondata = JSON.stringify(Readvalues);
     //console.log('JSON', myjsondata);
   }
   ReadData();
-  // const [isFetching, setIsFetching] = React.useState(false);
-  // React.useEffect(() => {
-  // }, [Readvalues]);
 
   ItemSeparator = () => {
     return (
@@ -38,15 +31,10 @@ function DisplayDataBase() {
       />
     );
   };
-  renderItem1 = ({item, index}) => {
+  renderItem1 = ({item , index}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          // console.log(
-          //   'item.backgroundColor index',
-          //   item.BackgroundColor,
-          //   index,
-          // );
           navigation.navigate('Mydatabase', {
             KeyId: item.key,
             Title: item.title,
@@ -76,19 +64,17 @@ function DisplayDataBase() {
         renderItem={renderItem1}
         keyExtractor={item => item.key}
         ItemSeparatorComponent={ItemSeparator}
-        numColumns={2}
       />
     </View>
   );
 }
-export default DisplayDataBase;
+export default DisplayDBSingleView;
 
 const styles = StyleSheet.create({
   RenderitemStyle: {
-    padding: 0,
+    padding: 1,
     marginVertical: 5,
     marginHorizontal: 6,
-    fontSize: 20,
-    width: Dimension,
+    width: 400,
   },
 });

@@ -8,7 +8,7 @@ function EditNotes() {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <TextInput
-        style={{height: 90, backgroundColor: 'white'}}
+        style={{height: 90, backgroundColor: 'black'}}
         placeholder="Title"
         onChangeText={Titletext => {
           setTitleText(Titletext);

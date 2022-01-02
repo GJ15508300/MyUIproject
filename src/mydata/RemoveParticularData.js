@@ -1,9 +1,18 @@
 import * as React from 'react';
 import database from '@react-native-firebase/database';
-let NoOfMyData;
-database()
-  .ref('/user')
-  .once('value')
-  .then(snapshot => {
-    console.log('User data: ', snapshot.val());
-  });
+
+export const RemoveParticularData = async DeleteDataIndex => {
+  console.log(' RemoveParticularData', DeleteDataIndex);
+  let MYreadDB;
+  let Refrencekey = [];
+  MYreadDB = await database()
+    .ref('/user')
+    .once('value', function (snapshot) {
+      // console.log('snapshot', snapshot);
+      snapshot.forEach(function (childSnapShot) {
+        Refrencekey.push(childSnapShot.key);
+        console.log('Refrencekey', Refrencekey);
+      });
+    });
+  await database().ref('/user').child(Refrencekey[DeleteDataIndex]).set(null);
+};

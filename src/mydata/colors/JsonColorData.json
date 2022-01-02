@@ -1,0 +1,58 @@
+
+[
+    {
+        "id": 1,
+        "title": "Silver",
+        "HexCode": "#C0C0C0"
+      },
+      {
+          "id": 2,
+          "title": "Cyan / Aqua",
+          "HexCode": "#00FFFF"
+      },
+      {
+          "id": 3,
+          "title": "Green",
+          "HexCode": "#008000"
+      },
+      {
+        "id": 4,
+        "title": "Blue",
+        "HexCode": "#0000FF"
+    },
+    {
+        "id": 5,
+        "title": "orangered4",
+        "HexCode": "#FF7777"
+    },
+    {
+        "id": 6,
+        "title": "pear66°",
+        "HexCode": "#D1E231"
+    },
+    {
+        "id": 7,
+        "title": "LightGreen",
+        "HexCode": "#7AE845"
+    },
+    {
+        "id": 8,
+        "title": "aquaBlue",
+        "HexCode": "#66CCCC"
+    },
+    {
+        "id": 9,
+        "title": "violet",
+        "HexCode": "#B28DB9"
+    },
+    {
+        "id": 10,
+        "title": "aureolineyellow",
+        "HexCode": "#FFA114"
+    },
+    {
+        "id": 11,
+        "title": "Gold",
+        "HexCode": "#FFDE2B"
+    }
+]

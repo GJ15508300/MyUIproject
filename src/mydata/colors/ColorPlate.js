@@ -1,11 +1,48 @@
-import React, {useRef} from 'react';
-import {View, Button, Text, Image, StyleSheet} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  View,
+  Button,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  Dimensions,
+  FlatList,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import JSONColorData from './JsonColorData.json';
 
-function ColorPlate() {
+function ColorPlate({setColorBackground}) {
   const refRBSheet = useRef();
-  
+  useEffect(() => {
+    
+  });
+
+  renderColorItem1 = ({item}) => {
+    return (
+      <Pressable
+        onPress={() => {
+          console.log('FF Clicked');
+          console.log('item.title', item.HexCode);
+          setColorBackground(item.HexCode);
+        }}>
+        <View style={[styles.RenderitemStyle]}>
+          {/* <Text>{item.id}</Text> */}
+          <View
+            style={{
+              height: 40,
+              width: 40,
+              backgroundColor: item.HexCode,
+              borderRadius: 20,
+            }}>
+            {/* <Text>{item.title}</Text>     */}
+          </View>
+        </View>
+      </Pressable>
+    );
+  };
+
   return (
     <View
       style={{
@@ -14,15 +51,15 @@ function ColorPlate() {
         alignItems: 'center',
         backgroundColor: 'white',
       }}>
-     
       <TouchableOpacity
         onPress={() => {
           console.log('pressed color');
           refRBSheet.current.open();
-        }}>        
+        }}>
         <Image
           style={styles.tinyLogo}
-          source={require('./ColorPlateIcons/editScreenColor.png')} />
+          source={require('./ColorPlateIcons/editScreenColor.png')}
+        />
       </TouchableOpacity>
 
       <RBSheet
@@ -37,132 +74,19 @@ function ColorPlate() {
             backgroundColor: '#000',
           },
         }}>
-        
-        <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          backgroundColor: 'white',
-          flexDirection:'row'
-        }}>
-        <TouchableOpacity 
-        onPress={() => {console.log('green color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#00FF00" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/greenColor.png')}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "	#800000" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/Maroon.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#800080" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/purple.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#808000" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/OliveColor.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#808080" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/gray.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#000000" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/black.png')}
-        />
-      </TouchableOpacity>
-</View>
-<View
-style={{
-  flex: 1,
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  backgroundColor: 'white',
-  flexDirection:'row'
-}}>
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#FF5F1F" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/neonOrange.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#FFC0CB" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/pink.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#FFFF00" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/yellow.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#23238E" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/jacksonsBlue.png')}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => {console.log('cornflower Blue color');
-        navigation.navigate('SetColorMyData', {ColorCode : "#5e7286" });          
-        }}>        
-        <Image
-          style={styles.Circle}
-          source={require('./ColorPlateIcons/vikingBlue.png')}
-        />
-      </TouchableOpacity>
-      </View>
+        <View style={{flex: 1}}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={JSONColorData}
+            renderItem={renderColorItem1}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{
+              flexDirection: 'row',
+              flexWrap: 'nowrap',
+            }}
+          />
+        </View>
       </RBSheet>
     </View>
   );
@@ -179,6 +103,12 @@ const styles = StyleSheet.create({
     margin: 15,
     width: 40,
     height: 30,
-    borderRadius:30,
+    borderRadius: 30,
+  },
+  RenderitemStyle: {
+    padding: 1,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    // width: Dimensions.get('window').width / 2,
   },
 });

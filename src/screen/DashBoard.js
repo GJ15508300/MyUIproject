@@ -2,35 +2,26 @@ import * as React from 'react';
 import {useState} from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
   Image,
   TouchableOpacity,
-  Button,
-  FlatList,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import AddNumberList from '../FlatList/AddNumberList';
-import SingleViewFlatList from '../FlatList/SingleViewFlatList';
 import DisplayDataBase from '../mydata/DisplayDataBase';
+import DisplayDBSingleView from './DisplayDBSingleView';
 
-function DashBoard() {
+function DashBoard({route}) {
+  const {flag} = route?.params ?? {};
   const navigation = useNavigation();
   const [text, setText] = useState('');
-  const [mydata, setData] = useState('');
   const [clickcheck, setcheck] = useState(0);
-  
 
   React.useEffect(() => {
     console.log('USE Effect');
-    DisplayDataBase
-  });
-  
-  // location.reload();
+    DisplayDataBase;
+  }, [flag]);
 
-  //  window.location.reload();
-  // window.location.href = window.location.href;
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.Background1}>
@@ -48,7 +39,6 @@ function DashBoard() {
 
         <TouchableOpacity
           onPress={() => {
-            console.log('Entery');
             setcheck(clickcheck + 1);
           }}>
           <Image
@@ -62,8 +52,7 @@ function DashBoard() {
         />
       </View>
       {/* {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />} */}
-
-      <DisplayDataBase />
+      {clickcheck % 2 === 1 ? <DisplayDataBase /> : <DisplayDBSingleView />}
 
       <View>
         <View style={styles.GroundBackground2}>
@@ -156,7 +145,6 @@ const styles = StyleSheet.create({
     margin: 400,
   },
   endLogo: {
-    // marginTop: -100,
     marginLeft: 300,
     width: 70,
     height: 70,

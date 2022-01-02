@@ -3,21 +3,20 @@ import {WriteDataBase} from './WriteDataBase';
 const reference = database().ref('/user');
 
 async function ReadDatabase() {
-  
   let MYreadDB;
-  let Readvalues;
+  let Readvalues = [];
+  let key = [];
   MYreadDB = await database()
     .ref('/user')
-    .once('value')
-    .then(snapshot => {
-      console.log("______________________________________________________________________");
-      if (snapshot.val() === null) {
-      } else {
-        Readvalues = Object.values(snapshot.val());
-      }
+    .once('value', function (snapshot) {
+      //console.log("snapshot",snapshot);
+      snapshot.forEach(function (childSnapShot) {
+        Readvalues.push(childSnapShot.val());
+        key.push(childSnapShot.key);
+      });
     })
+    .then(snapshot => {})
     .catch(err => console.error('error: ' + err));
-  // console.log("MY read DB",MYreadDB,Readvalues);
   return Readvalues;
 }
 export default ReadDatabase;
