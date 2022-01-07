@@ -9,7 +9,8 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+
+import {TouchableOpacity,TextInput} from 'react-native';
 import JSONDATA from './JsonData.json';
 
 function AddNumberList() {

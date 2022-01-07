@@ -1,12 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Button, Text, Image, StyleSheet, Pressable} from 'react-native';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity,TextInput,FlatList} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import JSONColorData from '../mydata/colors/JsonColorData.json';
 import {RemoveParticularData} from '../mydata/RemoveParticularData';
 import JSONEditData from './JSONEditOptionData.json';
 function EditScreenOptionMenu(DeleteDataIndex) {
-  console.log('DeleteDataIndex ', DeleteDataIndex);
+  //console.log('DeleteDataIndex ', DeleteDataIndex);
   const refRBSheet = useRef();
   const [DataDeleted, setDataDeleted] = useState();
   useEffect(() => {});

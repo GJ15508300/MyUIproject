@@ -5,6 +5,8 @@ export const AddEditDB = async (
   KeyId,
   colorBackground,
   index,
+  PinValue,
+  ArchiveValue,
 ) => {
   let MYreadDB;
   let Refrencekey = [];
@@ -22,6 +24,8 @@ export const AddEditDB = async (
     ContentValue: ContentValue,
     key: KeyId,
     BackgroundColor: colorBackground,
+    PinMyData:PinValue,
+    Archive:ArchiveValue,
   };
 
   const newReference = database().ref('/user').child(Refrencekey[index]);

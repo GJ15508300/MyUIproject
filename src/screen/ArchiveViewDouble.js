@@ -1,6 +1,5 @@
 import database from '@react-native-firebase/database';
 import * as React from 'react';
-
 import {TouchableOpacity} from 'react-native';
 import {View, FlatList, StyleSheet, Text, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -8,7 +7,8 @@ import ReadDatabase from '../mydata/ReadDatabase';
 let Readvalues;
 let myjsondata;
 
-function DisplayDBSingleView() {
+const Dimension = Dimensions.get('window').width / 2;
+function ArchiveViewDouble() {
   const navigation = useNavigation();
 
   const [isFetching, setIsFetching] = React.useState(false);
@@ -34,8 +34,7 @@ function DisplayDBSingleView() {
   };
   renderItem1 = ({item, index}) => {
     return (
-      item.Archive === false ?
-      item.PinMyData ===  false ?
+      item.Archive !== false ?
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Mydatabase', {
@@ -61,14 +60,13 @@ function DisplayDBSingleView() {
         </View>
       </TouchableOpacity>
       : null
-      :null
     );
   };
 
 
   renderItem2 = ({item, index}) => {
     return (
-      item.Archive === false ?
+      item.Archive !== false ?
       item.PinMyData !== false ?
       <TouchableOpacity
         onPress={() => {
@@ -83,7 +81,7 @@ function DisplayDBSingleView() {
         }}>
         <View
           style={[
-            styles.RenderStylePinned,
+            styles.RenderitemStyle,
             {backgroundColor: item.BackgroundColor},
           ]}>
              
@@ -102,42 +100,32 @@ function DisplayDBSingleView() {
 
   return (
     <View style={{flex: 0.9}}>
-      <Text> Pinned</Text>
-      <View> 
+      {/* <Text> Pinned</Text>
       <FlatList
         data={Readvalues}
         renderItem={renderItem2}
         keyExtractor={item => item.key}
         ItemSeparatorComponent={ItemSeparator}
-        numColumns={1}
-      />
-      </View>
-      <View>
+        numColumns={2}
+      /> */}
       <Text> Others</Text>
       <FlatList
         data={Readvalues}
         renderItem={renderItem1}
         keyExtractor={item => item.key}
         ItemSeparatorComponent={ItemSeparator}
-        numColumns={1}
+        numColumns={2}
       />
-      </View>
     </View>
   );
 }
-export default DisplayDBSingleView;
+export default ArchiveViewDouble;
 
 const styles = StyleSheet.create({
   RenderitemStyle: {
     padding: 1,
     marginVertical: 5,
     marginHorizontal: 6,
-    width: 400,
-  },
-  RenderStylePinned: {
-    // padding: 1,
-    // marginVertical: 5,
-    // marginHorizontal: 6,
-    width: 400,
+    width: Dimension,
   },
 });

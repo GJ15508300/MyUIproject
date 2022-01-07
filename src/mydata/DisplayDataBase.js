@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ReadDatabase from './ReadDatabase';
 import JSONDATA from '../FlatList/JsonData.json';
+import {TouchableOpacity} from 'react-native';
 import {View, FlatList, StyleSheet, Text, Dimensions} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 let Readvalues = [];
 let myjsondata = [];
@@ -13,10 +13,11 @@ const DimensionSingleView = Dimensions.get('window').width;
 function DisplayDataBase() {
   console.log('Entery');
   const navigation = useNavigation();
+  var VisiblePinCheck = 0;
 
   async function ReadData() {
     Readvalues = await ReadDatabase();
-    console.log('read values', Readvalues);
+   // console.log('read values', Readvalues);
     // UserKey = Readvalues.key;
     // myjsondata = Readvalues.Readvalues;
     //myjsondata = Readvalues;
@@ -39,45 +40,85 @@ function DisplayDataBase() {
     );
   };
   renderItem1 = ({item, index}) => {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          // console.log(
-          //   'item.backgroundColor index',
-          //   item.BackgroundColor,
-          //   index,
-          // );
-          navigation.navigate('Mydatabase', {
-            KeyId: item.key,
-            Title: item.title,
-            Content: item.ContentValue,
-            BackgroundColorHexValue: item.BackgroundColor,
-            index: index,
-          });
-        }}>
-        <View
-          style={[
-            styles.RenderitemStyle,
-            {backgroundColor: item.BackgroundColor},
-          ]}>
-          <Text>{item.key}</Text>
-          <Text>{item.title}</Text>
-          <Text>{item.ContentValue}</Text>
-          {/* <Text>{item.BackgroundColor}</Text> */}
-        </View>
-      </TouchableOpacity>
-    );
+    return item.Archive === false ? (
+      item.PinMyData === false ? (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Mydatabase', {
+              KeyId: item.key,
+              Title: item.title,
+              Content: item.ContentValue,
+              BackgroundColorHexValue: item.BackgroundColor,
+              index: index,
+              PinValue: item.PinMyData,
+            });
+          }}>
+          <View
+            style={[
+              styles.RenderitemStyle,
+              {backgroundColor: item.BackgroundColor},
+            ]}>
+            <Text>{item.key}</Text>
+            <Text>{item.title}</Text>
+            <Text>{item.ContentValue}</Text>
+            {/* <Text>{item.BackgroundColor}</Text> */}
+          </View>
+        </TouchableOpacity>
+      ) : null
+    ) : null;
+  };
+
+  renderItem2 = ({item, index}) => {
+    return item.Archive === false ? (
+      item.PinMyData !== false  ? (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Mydatabase', {
+              KeyId: item.key,
+              Title: item.title,
+              Content: item.ContentValue,
+              BackgroundColorHexValue: item.BackgroundColor,
+              index: index,
+              PinValue: item.PinMyData,
+            });
+          }}>
+          <View
+            style={[
+              styles.RenderitemStyle,
+              {backgroundColor: item.BackgroundColor},
+            ]}>
+            <Text>{item.key}</Text>
+            <Text>{item.title}</Text>
+            <Text>{item.ContentValue}</Text>
+            <Text>{item.Archive}</Text>
+          </View>
+        </TouchableOpacity>
+      ) : null
+    ) : null;
   };
 
   return (
     <View style={{flex: 0.9}}>
-      <FlatList
-        data={Readvalues}
-        renderItem={renderItem1}
-        keyExtractor={item => item.key}
-        ItemSeparatorComponent={ItemSeparator}
-        numColumns={2}
-      />
+      <Text> Pinned</Text>
+      <View>
+        <FlatList
+          data={Readvalues}
+          renderItem={renderItem2}
+          keyExtractor={item => item.key}
+          ItemSeparatorComponent={ItemSeparator}
+          numColumns={2}
+        />
+      </View>
+      <View>
+        <Text> Others</Text>
+        <FlatList
+          data={Readvalues}
+          renderItem={renderItem1}
+          keyExtractor={item => item.key}
+          ItemSeparatorComponent={ItemSeparator}
+          numColumns={2}
+        />
+      </View>
     </View>
   );
 }
@@ -85,10 +126,8 @@ export default DisplayDataBase;
 
 const styles = StyleSheet.create({
   RenderitemStyle: {
-    padding: 0,
     marginVertical: 5,
     marginHorizontal: 6,
-    fontSize: 20,
     width: Dimension,
   },
 });

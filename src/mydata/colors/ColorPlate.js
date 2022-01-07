@@ -9,7 +9,7 @@ import {
   Dimensions,
   FlatList,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity,TextInput} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import JSONColorData from './JsonColorData.json';
 

@@ -8,7 +8,7 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity,TextInput} from 'react-native';
 import JSONDATA from './JsonData.json'
 
 

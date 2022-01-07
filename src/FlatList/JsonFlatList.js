@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import JSONDATA from './JsonData.json'
 export default class JsonFlatList extends React.Component {  
 

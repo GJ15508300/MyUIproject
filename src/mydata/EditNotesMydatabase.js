@@ -1,32 +1,36 @@
 import database from '@react-native-firebase/database';
-import {StyleSheet, View, Button, Text, BackHandler, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  BackHandler,
+  Image,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
 import * as React from 'react';
-import {TextInput} from 'react-native-gesture-handler';
+import {TextInput} from 'react-native';
 import {FindKeyValuesDB} from './FindKeyValuesDB';
 import {useNavigation} from '@react-navigation/native';
 import ColorPlate from '../mydata/colors/ColorPlate';
 import {useRoute} from '@react-navigation/native';
 import EditScreenOptionMenu from '../options/EditScreenOptionMenu';
 import {AddEditDB} from './AddEditedDB';
-import {RemoveParticularData} from './RemoveParticularData';
 
 function EditNotesMydatabase() {
   const route = useRoute();
-  var checkDelt = 0;
-  const {KeyId, Title, Content, BackgroundColorHexValue, index} =
-    route?.params ?? {};
-  console.log(
-    'parameter passing',
+  const {
     KeyId,
     Title,
     Content,
     BackgroundColorHexValue,
     index,
-  );
+    PinValue,
+    ArchiveValue,
+  } = route?.params ?? {};
+  console.log('parameter passing ArchiveValue', ArchiveValue, KeyId);
   const navigation = useNavigation();
   const [colorBackground, setColorBackground] = React.useState('#FFFFFF');
-  const [DeletData, setDeleteData] = React.useState('index');
-
   React.useEffect(() => {});
 
   const [values, onChangeTitleValue] = React.useState(Title);
@@ -35,19 +39,36 @@ function EditNotesMydatabase() {
   const newReference = database().ref('/user').push();
   var colorCheck = 0;
   const [pressBack, setPressBack] = React.useState(false);
-
+  const [MYArchiveValue, SetArchiveValue] = React.useState(false);
+  const [MYPinValue, SetPinValue] = React.useState(false);
+  const [UnPin, SetUnPin] = React.useState(PinValue);
+  const [UnArchiveValue, SetUnArchiveValue] = React.useState(ArchiveValue);
+  console.log('ArchiveValue ,UnArchiveValue', MYArchiveValue, UnArchiveValue);
   if (pressBack) {
+    // console.log(
+    //   'ArchiveValue 1st',
+    //   MYArchiveValue,
+    //   'ArchiveValue',
+    //   ArchiveValue,
+    // );
     KeyId === undefined
-      ? FindKeyValuesDB(values, ContentValue, colorBackground)
-      : AddEditDB(
+      ? FindKeyValuesDB(
           values,
           ContentValue,
-          KeyId,
-          colorBackground == '#FFFFFF'
-            ? BackgroundColorHexValue
-            : colorBackground,
-          index,
-        );
+          colorBackground,
+          MYArchiveValue,
+          MYPinValue,
+        )
+      : console.log('MYPinValue ,UnPin', MYPinValue, UnPin);
+    AddEditDB(
+      values,
+      ContentValue,
+      KeyId,
+      colorBackground === '#FFFFFF' ? BackgroundColorHexValue : colorBackground,
+      index,
+      MYPinValue !== false ? MYPinValue : UnPin,
+      MYArchiveValue !== false ? MYArchiveValue : UnArchiveValue,
+    );
   }
 
   function handleBackButtonClick() {
@@ -70,45 +91,148 @@ function EditNotesMydatabase() {
   } else {
     colorCheck = 0;
   }
-
+  let isLoggedIn;
+  if (PinValue === false) {
+    isLoggedIn = true;
+  } else {
+    isLoggedIn = false;
+  }
+  let isArchiveLogIn;
+  if (ArchiveValue === false) {
+    isArchiveLogIn = false;
+    console.log(' isArchiveLogIn if', isArchiveLogIn);
+  } else {
+    if (ArchiveValue >= 0) {
+      isArchiveLogIn = false;
+    } else {
+      console.log(' isArchiveLogIn else', isArchiveLogIn);
+      isArchiveLogIn = true;
+    }
+  }
   return (
-    <View
-      style={{
-        backgroundColor:
-          colorCheck !== 1 ? colorBackground : BackgroundColorHexValue,
-      }}>
-      <View>
-        <Text>Title</Text>
-        <TextInput
-        //borderColor="green"
-          style={styles.input}
-          onChangeText={
-            colorCheck !== 1
-              ? text => onChangeTitleValue(text)
-              : Title => onChangeTitleValue(Title)
-          }
-          value={values}
-        />
-        <View styles={styles.contentBox}>
-          <Text>CONTENT AREA</Text>
+    <View>
+      <View style={styles.ViewStyleTopIcon}>
+        <View style={{alignSelf: 'flex-start', flexDirection: 'row'}}>
+          <View>
+            {isLoggedIn ? (
+              <TouchableOpacity
+                onPress={() => {
+                  SetPinValue(MYPinValue + 1);
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/pinImg.png')}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('unpin', UnPin);
+                  SetUnPin(UnPin => (UnPin = false));
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/unPin.png')}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
-        <TextInput
-          style={styles.contentBox}
-          onChangeText={text => onchangeContentValue(text)}
-          value={ContentValue}
-        />
+        <View style={{alignSelf: 'flex-end', flexDirection: 'row'}}>
+          <View>
+            {isLoggedIn ? (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('Archive', MYArchiveValue);
+                  SetArchiveValue(
+                    MYArchiveValue + Math.floor(Math.random() * 1000),
+                  );
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/archiveImage.png')}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('UnArchive', UnArchiveValue);
+                  SetUnArchiveValue(UnArchiveValue => (UnArchiveValue = false));
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/unArchive.png')}
+                />
+              </TouchableOpacity>
+            )}
+
+            {/* {isLoggedIn ? (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('UnArchive', UnArchiveValue);
+                  SetUnArchiveValue(UnArchiveValue => (UnArchiveValue = false));
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/unArchive.png')}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('Archive', MYArchiveValue);
+                  SetArchiveValue(
+                    MYArchiveValue + Math.floor(Math.random() * 1000),
+                  );
+                }}>
+                <Image
+                  style={styles.ClickablePin}
+                  source={require('../assets/icons/archiveImage.png')}
+                />
+              </TouchableOpacity>
+            )} */}
+          </View>
+        </View>
       </View>
 
-      <View style={styles.GroundBackground2}>
-        <Image
-          style={styles.tinyLogo}
-          source={require('../assets/icons/editScreenPlus.png')}
-        />
-        <ColorPlate setColorBackground={setColorBackground} />
+      <View
+        style={{
+          backgroundColor:
+            colorCheck !== 1 ? colorBackground : BackgroundColorHexValue,
+        }}>
+        <View style={{}}>
+          <Text>Title</Text>
+          <TextInput
+            //borderColor="red"
+            style={styles.input}
+            onChangeText={
+              colorCheck !== 1
+                ? text => onChangeTitleValue(text)
+                : Title => onChangeTitleValue(Title)
+            }
+            value={values}
+          />
+          <View styles={styles.contentBox}>
+            <Text>CONTENT AREA</Text>
+          </View>
+          <TextInput
+            numberOfLines={13}
+            style={styles.contentBox}
+            onChangeText={text => onchangeContentValue(text)}
+            value={ContentValue}
+          />
+        </View>
 
-        <View style={{flex: 1, justifyContent: 'flex-end'}}>
-          {/* <EditScreenOptionMenu setDeleteData={setDeleteData}/>  */}
-          {(console.log(index), checkDelt = EditScreenOptionMenu(index))}
+        <View style={styles.ViewGroundBackground2}>
+          <Image
+            style={styles.tinyLogo}
+            source={require('../assets/icons/editScreenPlus.png')}
+          />
+          <ColorPlate setColorBackground={setColorBackground} />
+
+          <View style={{flex: 1, justifyContent: 'flex-end'}}>
+            {EditScreenOptionMenu(index)}
+          </View>
         </View>
       </View>
     </View>
@@ -120,13 +244,13 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     margin: 20,
-    borderWidth: 3,
+    borderWidth: 0.3,
     padding: 10,
   },
   contentBox: {
-    height: 300,
+    //height: 250,
     margin: 20,
-    borderWidth: 3,
+    borderWidth: 0.2,
     padding: 10,
   },
   textStyle: {
@@ -136,11 +260,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 50,
   },
-  GroundBackground2: {
+  ViewGroundBackground2: {
     justifyContent: 'flex-start',
     flexDirection: 'row',
     backgroundColor: 'white',
     marginTop: 70,
+  },
+  ViewStyleTopIcon: {
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    //marginTop: 70,
   },
   tinyLogo: {
     margin: 15,
@@ -167,5 +298,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     paddingVertical: 10,
     marginTop: 40,
+  },
+  ClickableIcon: {
+    margin: 1,
+    width: 40,
+    height: 50,
+    alignSelf: 'flex-end',
+  },
+  ClickablePin: {
+    margin: 1,
+    width: 40,
+    height: 50,
+    alignSelf: 'flex-start',
   },
 });

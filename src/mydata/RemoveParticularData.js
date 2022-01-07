@@ -1,7 +1,7 @@
 import * as React from 'react';
 import database from '@react-native-firebase/database';
 
-export const RemoveParticularData = async DeleteDataIndex => {
+export const RemoveParticularData = async (DeleteDataIndex) => {
   console.log(' RemoveParticularData', DeleteDataIndex);
   let MYreadDB;
   let Refrencekey = [];

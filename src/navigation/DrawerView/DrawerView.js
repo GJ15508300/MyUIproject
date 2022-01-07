@@ -1,18 +1,17 @@
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
+// import { createDrawerNavigator } from 'react-navigation-drawer';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
+// const Drawer = createDrawerNavigator();
 
-const Drawer = createDrawerNavigator();
-
-function DrawerView() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Feed" component={Feed} />
-      <Drawer.Screen name="Article" component={Article} />
-    </Drawer.Navigator>
-  );
-}
-export default DrawerView;
+// function DrawerView() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="Feed" component={Feed} />
+//       <Drawer.Screen name="Article" component={Article} />
+//     </Drawer.Navigator>
+//   );
+// }
+// export default DrawerView;
 
 // import * as React from 'react';
 // import {Text, View} from 'react-native';

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { View, Button, Text } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import EditNotes from "./EditNotes";
- 
 export default function BottomSheet() {
   const refRBSheet = useRef();
   return (

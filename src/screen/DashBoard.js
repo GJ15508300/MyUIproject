@@ -10,30 +10,38 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import DisplayDataBase from '../mydata/DisplayDataBase';
 import DisplayDBSingleView from './DisplayDBSingleView';
+import SearchData from './SearchData';
 
 function DashBoard({route}) {
   const {flag} = route?.params ?? {};
   const navigation = useNavigation();
-  const [text, setText] = useState('');
+  const [Searchtext, setSearchText] = useState('');
   const [clickcheck, setcheck] = useState(0);
 
   React.useEffect(() => {
     console.log('USE Effect');
-    DisplayDataBase;
+     
   }, [flag]);
+  console.log("Search text =>",Searchtext);
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.Background1}>
-        <Image
-          style={styles.tinyLogo}
-          source={require('../assets/icons/Menu.png')}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Entery');
+            navigation.navigate('Archivedata');
+          }}>
+          <Image
+            style={styles.tinyLogo}
+            source={require('../assets/icons/Menu.png')}
+          />
+        </TouchableOpacity>
         <TextInput
-          style={{height: 40}}
+          style={{height: 70,width:150,fontSize:18}}
           placeholder="Search your Notes"
           onChangeText={text => {
-            setText(text);
+            setSearchText(text);
           }}
         />
 
@@ -51,9 +59,12 @@ function DashBoard({route}) {
           source={require('../assets/icons/profile.png')}
         />
       </View>
-      {/* {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />} */}
-      {clickcheck % 2 === 1 ? <DisplayDataBase /> : <DisplayDBSingleView />}
-
+      <View> 
+          {Searchtext!== undefined ?<SearchData setSearchText={setSearchText} /> : null}
+          </View>
+          {/* <View><SearchData /> </View> */}
+      {clickcheck % 2 === 1 ? <DisplayDataBase /> : <DisplayDBSingleView />} 
+      
       <View>
         <View style={styles.GroundBackground2}>
           <Image
