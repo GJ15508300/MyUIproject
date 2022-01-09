@@ -98,16 +98,12 @@ function EditNotesMydatabase() {
     isLoggedIn = false;
   }
   let isArchiveLogIn;
-  if (ArchiveValue === false) {
-    isArchiveLogIn = false;
+  if (ArchiveValue === undefined) {
+    isArchiveLogIn = true;
     console.log(' isArchiveLogIn if', isArchiveLogIn);
   } else {
-    if (ArchiveValue >= 0) {
-      isArchiveLogIn = false;
-    } else {
-      console.log(' isArchiveLogIn else', isArchiveLogIn);
-      isArchiveLogIn = true;
-    }
+    console.log(' isArchiveLogIn else', isArchiveLogIn);
+    isArchiveLogIn = false;
   }
   return (
     <View>

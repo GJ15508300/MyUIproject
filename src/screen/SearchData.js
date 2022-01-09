@@ -5,15 +5,23 @@ import {TouchableOpacity} from 'react-native';
 import {View, FlatList, StyleSheet, Text, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import ReadDatabase from '../mydata/ReadDatabase';
+import PropTypes from 'prop-types'
 let Readvalues;
 let myjsondata;
 
 function SearchData({SearchParameter}) {
-    const tttttt=SearchParameter;
-    console.log("SearchParameter =>",SearchParameter,tttttt);
+    React.useEffect(() => { 
+        console.log('USE Effect');
+         
+      }, [SearchParameter]);
+    
+      SearchData.propTypes = {
+        SearchParameter: PropTypes.string
+      }
+
+    console.log("SearchParameter =>",SearchParameter);
   const navigation = useNavigation();
 
-  const [isFetching, setIsFetching] = React.useState(false);
 
   async function ReadData() {
     Readvalues = await ReadDatabase();

@@ -59,10 +59,10 @@ function DashBoard({route}) {
           source={require('../assets/icons/profile.png')}
         />
       </View>
-      <View> 
-          {Searchtext!== undefined ?<SearchData setSearchText={setSearchText} /> : null}
-          </View>
-          {/* <View><SearchData /> </View> */}
+      {/* <View>  */}
+          {Searchtext!== undefined ?<SearchData setSearchText={()=>setSearchText} /> : null}
+          {/* </View> */}
+         
       {clickcheck % 2 === 1 ? <DisplayDataBase /> : <DisplayDBSingleView />} 
       
       <View>
