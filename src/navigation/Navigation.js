@@ -6,19 +6,26 @@ import EditNotes from '../screen/EditNotes';
 import FlatListData from '../FlatList/FlatListData';
 import AddNumberList from '../FlatList/AddNumberList';
 import JsonFlatList from '../FlatList/JsonFlatList';
-import Mydatabase from '../mydata/Mydatabase';
+
+import EditNotesMydatabase from '../mydata/EditNotesMydatabase';
+import SetColorMyData from '../mydata/colors/SetColorMyData';
+import ArchiveData from '../screen/ArchiveData';
 
 const Stack = createStackNavigator();
 
 function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+      >
         <Stack.Screen name="Home" component={DashBoard} />
         <Stack.Screen name="SecondScreen" component={EditNotes} />
-        <Stack.Screen name="Mydatabase" component={Mydatabase} />
-        
+        <Stack.Screen name="Mydatabase" component={EditNotesMydatabase} />
+        <Stack.Screen name="SetColorMyData" component={SetColorMyData} />
+        <Stack.Screen name="Archivedata" component={ArchiveData} />
       </Stack.Navigator>
     </NavigationContainer>
   );

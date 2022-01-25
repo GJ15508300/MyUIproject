@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,22 +9,22 @@ import {
   Button,
   Dimensions,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import JSONDATA from './JsonData.json'
 
+import {TouchableOpacity,TextInput} from 'react-native';
+import JSONDATA from './JsonData.json';
 
-function AddNumberList () {
-  ItemSeparator =()=> {
+function AddNumberList() {
+  ItemSeparator = () => {
     return (
       <View
         style={{
           height: 1,
           width: 5,
-          backgroundColor: "pink",          
+          backgroundColor: 'pink',
         }}
       />
     );
-  }
+  };
   renderItem1 = ({item}) => {
     const randomNumber = () => Math.floor(Math.random() * 255) + 1;
     const getRandomColor = `rgb(${randomNumber()},${randomNumber()},${randomNumber()})`;
@@ -37,28 +37,20 @@ function AddNumberList () {
     );
   };
 
-return (
-  <View style={{flex: 1}}>
-  
-<FlatList 
-  data={JSONDATA}
-  renderItem={renderItem1}
-  keyExtractor={item => item.title}          
-ItemSeparatorComponent={ItemSeparator} 
-    numColumns={2}
-/>
-
-</View>
-);
-  }
+  return (
+    <View style={{flex: 0.9}}>
+      <FlatList
+        data={JSONDATA}
+        renderItem={renderItem1}
+        keyExtractor={item => item.title}
+        ItemSeparatorComponent={ItemSeparator}
+        numColumns={2}
+      />
+    </View>
+  );
+}
 
 export default AddNumberList;
-
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -78,7 +70,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     marginHorizontal: 6,
     fontSize: 20,
-    width: Dimensions.get("window").width/2, 
+    width: Dimensions.get('window').width / 2,
   },
   item: {
     width: 40,

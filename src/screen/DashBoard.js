@@ -2,43 +2,51 @@ import * as React from 'react';
 import {useState} from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TextInput,
   Image,
   TouchableOpacity,
-  Button,
-  FlatList,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import AddNumberList from '../FlatList/AddNumberList';
-import SingleViewFlatList from '../FlatList/SingleViewFlatList';
-import Mydatabase from '../mydata/Mydatabase';
+import DisplayDataBase from '../mydata/DisplayDataBase';
+import DisplayDBSingleView from './DisplayDBSingleView';
+import SearchData from './SearchData';
 
-function DashBoard() {
+function DashBoard({route}) {
+  const {flag} = route?.params ?? {};
   const navigation = useNavigation();
-  const [text, setText] = useState('');
-  const [mydata, setData] = useState('');
+  const [Searchtext, setSearchText] = useState('');
   const [clickcheck, setcheck] = useState(0);
+
+  React.useEffect(() => {
+    console.log('USE Effect');
+     
+  }, [flag]);
+  console.log("Search text =>",Searchtext);
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.Background1}>
-        <Image
-          style={styles.tinyLogo}
-          source={require('../assets/icons/Menu.png')}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Entery');
+            navigation.navigate('Archivedata');
+          }}>
+          <Image
+            style={styles.tinyLogo}
+            source={require('../assets/icons/Menu.png')}
+          />
+        </TouchableOpacity>
         <TextInput
-          style={{height: 40}}
+          style={{height: 70,width:150,fontSize:18}}
           placeholder="Search your Notes"
           onChangeText={text => {
-            setText(text);
+            setSearchText(text);
           }}
         />
 
         <TouchableOpacity
           onPress={() => {
-            console.log('Entery');
             setcheck(clickcheck + 1);
           }}>
           <Image
@@ -51,24 +59,14 @@ function DashBoard() {
           source={require('../assets/icons/profile.png')}
         />
       </View>
-      <TouchableOpacity
-      onPress={() => {
-        console.log('Entery');
-        navigation.navigate('Mydatabase');
-      }}
-      > 
-      <Image
-              style={styles.Background1}
-              source={require('../assets/icons/Plus.png')}
-            />
+      {/* <View>  */}
+          {Searchtext!== undefined ?<SearchData setSearchText={()=>setSearchText} /> : null}
+          {/* </View> */}
+         
+      {clickcheck % 2 === 1 ? <DisplayDataBase /> : <DisplayDBSingleView />} 
       
-      </TouchableOpacity>
-
-
-      {clickcheck % 2 === 1 ? <AddNumberList /> : <SingleViewFlatList />}
-
       <View>
-        <View style={styles.Background2}>
+        <View style={styles.GroundBackground2}>
           <Image
             style={styles.tinyLogo}
             source={require('../assets/icons/tick.png')}
@@ -85,15 +83,13 @@ function DashBoard() {
             style={styles.tinyLogo}
             source={require('../assets/icons/image.png')}
           />
-          {/* <View style={styles.Background3}/>
-        <View style={styles.Background4}/> */}
         </View>
 
-        <View style={styles.nxtscreen}>
+        <View>
           <TouchableOpacity
             onPress={() => {
               console.log('Entery');
-              navigation.navigate('SecondScreen');
+              navigation.navigate('Mydatabase');
             }}>
             <Image
               style={styles.endLogo}
@@ -113,16 +109,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#ecf0f1',
   },
-  item2: {
-    padding: 9,
-    marginVertical: 10,
-    marginHorizontal: 8,
-    alignItems: 'center',
-    flex: 1,
-    width: 180,
-    height: 100,
-    fontSize: 20,
-  },
   container: {
     flex: 1,
     justifyContent: 'space-evenly',
@@ -137,15 +123,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
   },
-  Background2: {
+  GroundBackground2: {
     borderRadius: 10,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     backgroundColor: 'lightgray',
-    flexDirection: 'row',
     borderWidth: 1,
-    marginTop: 10,
-    //width:300,
+    marginTop: 20,
+    marginBottom: -100,
   },
   Background3: {
     borderRadius: 0,
@@ -157,22 +142,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: 100,
     height: 40,
-
     marginTop: 25,
   },
-  Background4: {
-    borderRadius: 0,
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
-    backgroundColor: 'lightgray',
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderEndWidth: 1,
-    borderBottomWidth: 1,
-    borderLeftWidth: 1,
-    width: 30,
-    height: 70,
-  },
+
   tinyLogo: {
     margin: 15,
     width: 40,
@@ -184,14 +156,9 @@ const styles = StyleSheet.create({
     margin: 400,
   },
   endLogo: {
-    marginTop: -100,
     marginLeft: 300,
     width: 70,
     height: 70,
-    borderRadius: 40,
-  },
-  nxtscreen: {
-    paddingTop: 0,
-    marginTop: 0,
+    borderRadius: 30,
   },
 });

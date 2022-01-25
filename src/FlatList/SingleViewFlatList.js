@@ -8,7 +8,7 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity,TextInput} from 'react-native';
 import JSONDATA from './JsonData.json'
 
 
@@ -40,7 +40,7 @@ function SingleViewFlatList () {
   
 
 return (
-  <View style={{flex: 1}}>
+  <View style={{flex: .9}}>
   <SafeAreaView style={styles.container1}>
 <FlatList 
   data={JSONDATA}
@@ -66,13 +66,7 @@ export default SingleViewFlatList;
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 10,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
+  
   container1: {
     flex: 1,
     justifyContent: 'center',
